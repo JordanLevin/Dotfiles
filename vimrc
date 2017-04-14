@@ -104,19 +104,33 @@ set cindent
 
 
 set nowrap
-"==================== END OF TAB STUFF ====================
+"==================== END OF TAB STUFF =====================
+
+"==================== STUFF FOR SEARCHING
 
 :nnoremap <CR> :nohlsearch<CR><CR>
 :set hlsearch
 "highlight text when searching
 :hi Search guibg=LightBlue
 
+"==================== END OF STUFF FOR SEARCHING ===========
+
+"==================== AIRLINE ==============================
 "the internet says this will make airline start when a file is opened
 set laststatus=2  
 "this makes the cool tab info on top appear
 let g:airline#extensions#tabline#enabled = 1
 "hide default mode
 set noshowmode
+"==================== END OF AIRLINE =======================
+
+"let g:ycm_server_python_interpreter = '/usr/bin/python3'
+"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+"let g:ycm_confirm_extra_conf = 0
+"let g:ycm_collect_identifiers_from_tags_files = 1
+"let g:ycm_autoclose_preview_window_after_completion = 1
+"let g:ycm_autoclose_preview_window_after_insertion=1
+"let g:ycm_python_binary_path = 'python3' "resolves to pyenv
 
 
 "treat handlebars and ejs files like html for formatting and syntax highlighting

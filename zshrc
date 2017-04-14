@@ -214,4 +214,4 @@ _zsh_terminal_set_256color() {
             autoload -U add-zsh-hook
             alien_prompts
 
-
+LS_COLORS=$LS_COLORS:'ex=90;106:' ; export LS_COLORS

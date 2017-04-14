@@ -70,7 +70,6 @@ bindsym Mod4 + l exec lock
 #keeps wallpaper on startup
 exec --no-startup-id nitrogen --restore
 
-
 #program launch shortcuts
 #Mod4 is windows key
 bindsym Mod4 + c exec /usr/bin/google-chrome-stable
@@ -79,6 +78,8 @@ bindsym Mod4 + e exec /home/jordan/eclipse/java-neon/eclipse/eclipse
 bindsym Mod4 + a exec atom
 bindsym Mod4 + f exec pcmanfm
 bindsym Mod4 + s exec subl
+bindsym Mod4 + q exec /home/jordan/Qt/Tools/QtCreator/bin/qtcreator
+
 
 new_window 1pixel
 
