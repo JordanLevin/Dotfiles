@@ -1,11 +1,3 @@
-"test of new git repo script
-" All system-wide defaults are set in $VIMRUNTIME/debian.vim and sourced by
-" the call to :runtime you can find below.  If you wish to change any of those
-" settings, you should do it in this file (/etc/vim/vimrc), since debian.vim
-" will be overwritten everytime an upgrade of the vim packages is performed.
-" It is recommended to make changes after sourcing debian.vim since it alters
-" the value of the 'compatible' option.
-
 " This line should not be removed as it ensures that various options are
 " properly set to work with the Vim-related packages available in Debian.
 runtime! debian.vim
@@ -23,6 +15,8 @@ filetype off                  " required
 "do pathogen stuff to use plugins
 execute pathogen#infect()
 
+"==================== SYNTASTIC SETTINGS
+
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
@@ -32,22 +26,17 @@ execute pathogen#infect()
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
 
+"==================== END OF SYNTASTIC
 
-" Vim5 and later versions support syntax highlighting. Uncommenting the next
-" line enables syntax highlighting by default.
+" Enable syntax highlighting
 if has("syntax")
   syntax on
 endif
 
-" If using a dark background within the editing area and syntax highlighting
-" turn on this option as well
-"set background=dark
-
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
-"if has("autocmd")
-"  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-"endif
+" jump to the last position when reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 " Uncomment the following to have Vim load indentation rules and plugins
 " according to the detected filetype.
@@ -72,21 +61,28 @@ endif
 "endif
 
 
-
 "if $TERM == "xterm-256color"
 "  set t_Co=256
 "endif
 
 
-":highlight Normal ctermfg=black ctermbg=gray
-
 "set colorscheme to evening
 :colorscheme evening
 
-"add numberings on the side
-set number
+"==================== START OF LINE NUMBER STUFF ============
+set relativenumber
 
-"==================== start OF TAB STUFF ====================
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <C-n> :call NumberToggle()<cr>
+
+"==================== START OF TAB STUFF ====================
 
 " show existing tab with 4 spaces width
 set tabstop=4
@@ -104,19 +100,17 @@ set cindent
 
 
 set nowrap
-"==================== END OF TAB STUFF =====================
 
-"==================== STUFF FOR SEARCHING
+"==================== STUFF FOR SEARCHING ==================
 
 :nnoremap <CR> :nohlsearch<CR><CR>
 :set hlsearch
 "highlight text when searching
 :hi Search guibg=LightBlue
 
-"==================== END OF STUFF FOR SEARCHING ===========
 
 "==================== AIRLINE ==============================
-"the internet says this will make airline start when a file is opened
+"make airline start when a file is opened
 set laststatus=2  
 "this makes the cool tab info on top appear
 let g:airline#extensions#tabline#enabled = 1
@@ -130,9 +124,9 @@ set noshowmode
 "let g:ycm_collect_identifiers_from_tags_files = 1
 "let g:ycm_autoclose_preview_window_after_completion = 1
 "let g:ycm_autoclose_preview_window_after_insertion=1
-"let g:ycm_python_binary_path = 'python3' "resolves to pyenv
+"let g:ycm_python_binary_path = 'python3'
 
-
-"treat handlebars and ejs files like html for formatting and syntax highlighting
+"==================== FILETYPE SETTINGS ====================
+"treat handlebars and ejs files like html for formatting
 au BufNewFile,BufRead *.handlebars set filetype=html
 au BufNewFile,BufRead *.ejs set filetype=html
