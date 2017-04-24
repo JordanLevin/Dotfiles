@@ -12,8 +12,6 @@ runtime! debian.vim
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-"do pathogen stuff to use plugins
-"execute pathogen#infect()
 
 call plug#begin('~/.vim/plugged')
 
@@ -23,10 +21,24 @@ Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-fugitive'
 Plug 'eagletmt/neco-ghc'
 Plug 'wellle/targets.vim'
+Plug 'honza/vim-snippets'
+Plug 'sirver/ultisnips'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
-"==================== SYNTASTIC SETTINGS
+
+
+"use global clipboard
+set clipboard=unnamedplus
+
+"==================== SNIPPET SETTINGS =====================
+
+let g:UltiSnipsExpandTrigger="<c-w>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+"==================== SYNTASTIC SETTINGS ===================
 
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
@@ -37,8 +49,8 @@ call plug#end()
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
 
-"==================== END OF SYNTASTIC
-
+"==================== END OF SYNTASTIC ======================
+"
 " Enable syntax highlighting
 if has("syntax")
   syntax on
@@ -64,12 +76,19 @@ endif
 "  set t_Co=256
 "endif
 
-
 "set colorscheme to evening
 :colorscheme evening
 
 "==================== MISC KEY MAP SETTINGS =================
 
+" Unbind the cursor keys in insert, normal and visual modes.
+for prefix in ['i', 'n', 'v']
+  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+    exe prefix . "noremap " . key . " <Nop>"
+  endfor
+endfor
+
+"move h j k l to j k l ;
 noremap ; l
 noremap l k
 noremap k j
@@ -85,19 +104,16 @@ set showcmd		" Show (partial) command in status line.
 
 "==================== START OF LINE NUMBER STUFF ============
 set relativenumber
-
+set number
 function! NumberToggle()
   if(&relativenumber == 1)
-    set number
+    set norelativenumber
   else
     set relativenumber
   endif
 endfunc
 
 nnoremap <C-n> :call NumberToggle()<cr>
-
-:au FocusLost * :set number
-:au FocusGained * :set relativenumber
 
 "==================== START OF TAB STUFF ====================
 
@@ -132,7 +148,7 @@ let g:airline#extensions#tabline#enabled = 1
 "hide default mode
 set noshowmode
 "==================== END OF AIRLINE =======================
-
+let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/youcompleteme/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 "let g:ycm_server_python_interpreter = '/usr/bin/python3'
 "let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 "let g:ycm_confirm_extra_conf = 0
@@ -145,3 +161,6 @@ set noshowmode
 "treat handlebars and ejs files like html for formatting
 au BufNewFile,BufRead *.handlebars set filetype=html
 au BufNewFile,BufRead *.ejs set filetype=html
+
+"make vim transparent
+hi Normal ctermbg=none
