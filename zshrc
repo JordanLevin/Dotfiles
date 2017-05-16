@@ -215,3 +215,6 @@ _zsh_terminal_set_256color() {
             alien_prompts
 
 LS_COLORS=$LS_COLORS:'ex=90;106:' ; export LS_COLORS
+
+
+xset r rate 400 60

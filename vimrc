@@ -15,15 +15,20 @@ filetype off                  " required
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'valloric/youcompleteme'
+"Plug 'Shougo/neocomplete.vim'
+Plug 'tpope/vim-surround'
 Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-fugitive'
 Plug 'eagletmt/neco-ghc'
 Plug 'wellle/targets.vim'
 Plug 'honza/vim-snippets'
+Plug 'scrooloose/nerdcommenter'
 Plug 'sirver/ultisnips'
 Plug 'jiangmiao/auto-pairs'
+Plug 'severin-lemaignan/vim-minimap'
 
 call plug#end()
 
@@ -31,6 +36,11 @@ call plug#end()
 
 "use global clipboard
 set clipboard=unnamedplus
+
+:set guioptions-=m  "remove menu bar
+:set guioptions-=T  "remove toolbar
+:set guioptions-=r  "remove right-hand scroll bar
+:set guioptions-=L  "remove left-hand scroll bar
 
 "==================== SNIPPET SETTINGS =====================
 
@@ -82,17 +92,12 @@ endif
 "==================== MISC KEY MAP SETTINGS =================
 
 " Unbind the cursor keys in insert, normal and visual modes.
-for prefix in ['i', 'n', 'v']
+for prefix in ['n', 'v']
   for key in ['<Up>', '<Down>', '<Left>', '<Right>']
     exe prefix . "noremap " . key . " <Nop>"
   endfor
 endfor
 
-"move h j k l to j k l ;
-noremap ; l
-noremap l k
-noremap k j
-noremap j h
 
 "==================== MISC SETTINGS =========================
 
@@ -101,6 +106,7 @@ set hidden		" Hide buffers when they are abandoned
 set incsearch		" Incremental search
 set showmatch		" Show matching brackets.
 set showcmd		" Show (partial) command in status line.
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " disable auto commenting
 
 "==================== START OF LINE NUMBER STUFF ============
 set relativenumber
@@ -143,19 +149,28 @@ set cindent
 "==================== AIRLINE ==============================
 "make airline start when a file is opened
 set laststatus=2  
+"set theme
+"set AirlineTheme 
+let g:airline_powerline_fonts = 1
 "this makes the cool tab info on top appear
 let g:airline#extensions#tabline#enabled = 1
 "hide default mode
 set noshowmode
 "==================== END OF AIRLINE =======================
+
+"==================== YCM SETTINGS =========================
 let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/youcompleteme/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 "let g:ycm_server_python_interpreter = '/usr/bin/python3'
 "let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 "let g:ycm_confirm_extra_conf = 0
+let g:ycm_error_symbol = ">"
+let g:ycm_show_diagnostics_ui = 0
 "let g:ycm_collect_identifiers_from_tags_files = 1
-"let g:ycm_autoclose_preview_window_after_completion = 1
-"let g:ycm_autoclose_preview_window_after_insertion=1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion=1
 "let g:ycm_python_binary_path = 'python3'
+
+"=================== END OF YCM SETTINGS ===================
 
 "==================== FILETYPE SETTINGS ====================
 "treat handlebars and ejs files like html for formatting
