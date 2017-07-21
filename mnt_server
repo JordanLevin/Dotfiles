@@ -1,0 +1,2 @@
+#!/bin/bash
+sshfs jordan@104.131.50.131:/ ~/remote_files

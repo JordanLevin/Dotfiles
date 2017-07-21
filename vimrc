@@ -29,6 +29,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'sirver/ultisnips'
 Plug 'jiangmiao/auto-pairs'
 Plug 'severin-lemaignan/vim-minimap'
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
@@ -165,7 +166,7 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/youcompleteme/third_party/ycmd
 "let g:ycm_confirm_extra_conf = 0
 let g:ycm_error_symbol = ">"
 let g:ycm_python_binary_path = '/usr/bin/python3'
-"let g:ycm_show_diagnostics_ui = 0
+let g:ycm_show_diagnostics_ui = 0
 "let g:ycm_collect_identifiers_from_tags_files = 1
 "let g:ycm_autoclose_preview_window_after_completion = 1
 "let g:ycm_autoclose_preview_window_after_insertion=1
