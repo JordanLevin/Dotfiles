@@ -2,13 +2,6 @@
 " properly set to work with the Vim-related packages available in Debian.
 runtime! debian.vim
 
-" Uncomment the next line to make Vim more Vi-compatible
-" NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
-" options, so any other options should be set AFTER setting 'compatible'.
-"set compatible
-
-
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -18,7 +11,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'valloric/youcompleteme'
-"Plug 'Shougo/neocomplete.vim'
 Plug 'tpope/vim-surround'
 Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-fugitive'
@@ -107,6 +99,7 @@ set hidden		" Hide buffers when they are abandoned
 set incsearch		" Incremental search
 set showmatch		" Show matching brackets.
 set showcmd		" Show (partial) command in status line.
+set directory^=$HOME/.vim/tmp// " Put swap files somewhere else
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " disable auto commenting
 
 "==================== START OF LINE NUMBER STUFF ============
@@ -161,16 +154,12 @@ set noshowmode
 
 "==================== YCM SETTINGS =========================
 let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/youcompleteme/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-"let g:ycm_server_python_interpreter = '/usr/bin/python3'
-"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-"let g:ycm_confirm_extra_conf = 0
 let g:ycm_error_symbol = ">"
 let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:ycm_show_diagnostics_ui = 0
 "let g:ycm_collect_identifiers_from_tags_files = 1
 "let g:ycm_autoclose_preview_window_after_completion = 1
 "let g:ycm_autoclose_preview_window_after_insertion=1
-"let g:ycm_python_binary_path = 'python3'
 
 "=================== END OF YCM SETTINGS ===================
 
